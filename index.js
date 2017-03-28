@@ -31,13 +31,22 @@ function readFile (file) {
     bandwidth
   } = obj.general
 
+  let estimate = _.round(bandwidth / 1024 / 1024 / 1024 * 0.09 * 4, 2)
+  if (estimate > 10) {
+    estimate = chalk.red(estimate)
+  } else if (estimate > 1) {
+    estimate = chalk.yellow(estimate)
+  } else {
+    estimate = chalk.green(estimate)
+  }
+
   bandwidth = bytesToSize(bandwidth)
   if (bandwidth.includes('GB')) bandwidth = chalk.red(bandwidth)
   if (bandwidth.includes('MB')) bandwidth = chalk.yellow(bandwidth)
   if (bandwidth.includes('KB')) bandwidth = chalk.green(bandwidth)
 
   const output = `
-    ${chalk.green.bold(_.padEnd(title, 20))} ${_.padEnd(bandwidth, 20)} From: ${chalk.blue(start_date)} To: ${chalk.blue(end_date)}
+    ${chalk.green.bold(_.padEnd(title, 20))} ${_.padEnd(bandwidth, 20)} $${_.padEnd(estimate + '/mo', 20)} From: ${chalk.blue(start_date)} To: ${chalk.blue(end_date)}
   `
   return output
 }
