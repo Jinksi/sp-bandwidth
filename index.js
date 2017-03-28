@@ -1,13 +1,32 @@
 #!/usr/bin/env node
 
+const path = require('path')
 const fs = require('fs')
 const chalk = require('chalk')
 const _ = require('lodash')
+const child_process = require('child_process')
+
+const binPath = path.dirname(process.argv[1])
+
+if(process.argv.indexOf('import')) {
+  child_process.execSync(`bash ${binPath}/writeLogs.sh`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+  })
+  process.exit()
+}
 
 const logDir = 'logs'
 const currentDir = fs.readdirSync('.')
+
 if (currentDir.indexOf(logDir) === -1) {
-  console.log(chalk.bgRed(`No ./${logDir} directory found`))
+  console.log(chalk.bgRed(`\nNo ./${logDir} directory found\n`))
+  console.log(chalk.red(`cd ~`))
+  process.exit()
 }
 
 const files = fs.readdirSync('./' + logDir)
