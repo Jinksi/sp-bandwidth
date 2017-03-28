@@ -6,9 +6,8 @@ const chalk = require('chalk')
 const _ = require('lodash')
 const child_process = require('child_process')
 
-const binPath = path.dirname(process.argv[1])
-
-if(process.argv.indexOf('import')) {
+const binPath = process.env.OLDPWD
+if(process.argv.indexOf('import') > -1) {
   child_process.execSync(`bash ${binPath}/writeLogs.sh`, (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
