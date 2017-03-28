@@ -2,6 +2,7 @@
 
 const fs = require('fs')
 const chalk = require('chalk')
+const _ = require('lodash')
 
 const logDir = 'logs'
 const currentDir = fs.readdirSync('.')
@@ -16,18 +17,23 @@ function readFile (file) {
   const title = file.split('.')[0]
   const content = fs.readFileSync(`./${logDir}/${file}`, 'utf8')
   if(!content) return `
-    ${chalk.yellow.bold(title)} – No info
+    ${chalk.yellow.bold(_.padEnd(title, 20))} No info
   `
   const obj = JSON.parse(content)
 
-  const {
+  let {
     start_date,
     end_date,
     bandwidth
   } = obj.general
 
+  bandwidth = bytesToSize(bandwidth)
+  if (bandwidth.includes('GB')) bandwidth = chalk.red(bandwidth)
+  if (bandwidth.includes('MB')) bandwidth = chalk.yellow(bandwidth)
+  if (bandwidth.includes('KB')) bandwidth = chalk.green(bandwidth)
+
   const output = `
-    ${chalk.green.bold(title)} – ${chalk.yellow.underline(bytesToSize(bandwidth))} – From: ${chalk.blue(start_date)} To: ${chalk.blue(end_date)}
+    ${chalk.green.bold(_.padEnd(title, 20))} ${_.padEnd(bandwidth, 20)} From: ${chalk.blue(start_date)} To: ${chalk.blue(end_date)}
   `
   return output
 }

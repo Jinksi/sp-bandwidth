@@ -10,7 +10,8 @@
   "author": "Eric Jinks",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^1.1.3"
+    "chalk": "^1.1.3",
+    "lodash": "^4.17.4"
   },
   "bin": {
     "sp-bandwidth": "./index.js"
