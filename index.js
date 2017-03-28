@@ -10,13 +10,16 @@ if (currentDir.indexOf(logDir) === -1) {
 }
 
 const files = fs.readdirSync('./' + logDir)
-
 const output = files.map(readFile)
 
 function readFile (file) {
-  const obj = JSON.parse(fs.readFileSync(`./${logDir}/${file}`, 'utf8'))
-
   const title = file.split('.')[0]
+  const content = fs.readFileSync(`./${logDir}/${file}`, 'utf8')
+  if(!content) return `
+    ${chalk.yellow.bold(title)} – No info
+  `
+  const obj = JSON.parse(content)
+
   const {
     start_date,
     end_date,
@@ -29,7 +32,7 @@ function readFile (file) {
   return output
 }
 
-console.log(output.join())
+console.log(output.join(''))
 
 function bytesToSize(bytes) {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
