@@ -1,5 +1,6 @@
 ![npm badge](https://badge.fury.io/js/sp-bandwidth.svg)
 
+Show ServerPilot user bandwidth information via cli.
 
 ### Installation
 
@@ -7,7 +8,7 @@
 
 ### Commands
 
-__Run when logged in as the `ubuntu` user__
+_Run when logged in as the `ubuntu` user_
 
 - `sp-log-import`: Parse the serverpilot logs and spit them out in `~/logs` as JSON. Run when you wish to update. Requires a `~/logs/` directory.  
 - `sp-bandwidth`: Display the parsed info in the terminal.
