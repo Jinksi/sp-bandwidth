@@ -1,5 +1,8 @@
 ![npm badge](https://badge.fury.io/js/sp-bandwidth.svg)
 
+
+### Installation
+
 `npm i -g sp-bandwidth`
 
 ### Commands
@@ -9,7 +12,7 @@ __Run when logged in as the `ubuntu` user__
 - `sp-log-import`: Parse the serverpilot logs and spit them out in `~/logs` as JSON. Run when you wish to update. Requires a `~/logs/` directory.  
 - `sp-bandwidth`: Display the parsed info in the terminal.
 
-### Requirements
+### Installation prerequisites
 
 #### [GoAccess](https://github.com/allinurl/goaccess)
 
