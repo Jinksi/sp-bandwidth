@@ -6,8 +6,8 @@
 
 __Run when logged in as the `ubuntu` user__
 
-`sp-log-import`: Parse the serverpilot logs and spit them out in `~/logs` as JSON. Run when you wish to update. Requires a `~/logs/` directory.  
-`sp-bandwidth`: Display the parsed info in the terminal.
+- `sp-log-import`: Parse the serverpilot logs and spit them out in `~/logs` as JSON. Run when you wish to update. Requires a `~/logs/` directory.  
+- `sp-bandwidth`: Display the parsed info in the terminal.
 
 ### Requirements
 
